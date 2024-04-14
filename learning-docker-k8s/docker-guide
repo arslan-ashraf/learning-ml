@@ -1,0 +1,91 @@
+###########################################################
+################ START - RUN INSTRUCTION ##################
+###########################################################
+
+# Using default syntax, each RUN instruction starts a new shell, 
+# as if opening the terminal, doing something and then closing it,
+# to see this:
+
+RUN echo "Step 1: The current directory is $(pwd)"
+RUN mkdir tmp && cd /tmp && echo "Step 2: The current directory is $(pwd)"
+RUN echo "Step 3: The current directory is $(pwd)"
+
+# To see the output of RUN instructions when building the image, run
+docker build --progress=plain -t <image_tag> .
+
+###########################################################
+################# END - RUN INSTRUCTION ###################
+###########################################################
+
+
+###########################################################
+############## START - WORKDIR INSTRUCTION ################
+###########################################################
+
+# WORKDIR instruction changes the directory for all RUN and ENTRYPOINT instructions
+# the WORKDIR instruction is like "cd <directory_name>" but for the entire image
+# and all subsequent RUN and COPY instructions start from this directory, when the
+# container is run, it also starts from this directory
+# to see this, exec into a running container and "pwd", another way is:
+
+WORKDIR /tmp
+RUN echo "Step 4: The current directory is $(pwd)"
+
+
+###########################################################
+################ END - WORKDIR INSTRUCTION ################
+###########################################################
+
+
+###########################################################
+################# START - ARG INSTRUCTION #################
+###########################################################
+
+# The ARG instruction is for image build time variables when you run
+
+docker build --build-arg my_variable=my_value -t <image_tag> .
+
+# These variables are built into the final image and remain fixed thereafter
+# and they can also have a default value which is used when --build-arg
+# is not used when building the image
+
+###########################################################
+################## END - ARG INSTRUCTION ##################
+###########################################################
+
+
+###########################################################
+################# START - ENV INSTRUCTION #################
+###########################################################
+
+# The ENV instruction is for container run time environment variables,
+# and they can be different every time the container is run,
+
+docker run -e my_env_var=my_value my_image
+
+# They can also have a default value which is used when -e is not used
+# when running the container
+# NOTE: when ARG and ENV in the Dockerfile point to the same variable,
+# ENV is given priority based on some conditions (details in docs)
+
+
+###########################################################
+################## END - ENV INSTRUCTION ##################
+###########################################################
+
+
+# the port on which the container will execute
+EXPOSE 80
+
+
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+
+### tensorflow config ###
+COPY ./models ./models
+
+CMD ["--model_config_file=/models/model.config"]
+
+# or without model.config inside /models folder
+# CMD [--model_base_path=/models/"]
+### tensorflow config ###
