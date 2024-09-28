@@ -341,11 +341,11 @@ grep -A 3 "example" file_name
 grep -B 3 "example" file_name
 
 # grep with regular expressions
-^ 		matches characters at the beginning of a line
-$ 		matches characters at the end of a line
-"." 	matches any character
-[a-z]	matches any characters between a and z
-[^ ..]	matches anything apart from what is in the brackets
+^     matches characters at the beginning of a line
+$     matches characters at the end of a line
+"."   matches any character
+[a-z] matches any characters between a and z
+[^ ..]  matches anything apart from what is in the brackets
 
 # EXAMPLE GREP JSON FILE:
 # Extract the 'price' from the following JSON file named bitcoin_price.txt
@@ -427,7 +427,7 @@ ping -c 5 <website> # a set number of ping results
 # transfer data to and from URLs
 curl <website> # returns the entire html of webpage
 # write the resulting html into file.txt
-crul <website> -o file.txt
+curl <website> -o file.txt
 
 
 # "web get" to download a file from a URL
@@ -439,7 +439,7 @@ wget <file_to_download>
 
 
 #############################################################
-############ START - ARCHIVING AND COMPRESSION ##############
+####### START - ARCHIVING, ENCODING AND COMPRESSION #########
 #############################################################
 
 # archive and dearchive (extract) files or directories using "tape archiver"
@@ -473,8 +473,17 @@ zip -r <directory_name>.zip <directory_name>
 unzip <file_name>.zip 
 unzip <directory_name>.zip
 
+# to encode text in base64
+echo "text_to_encode" | base64
+
+# take base64 encoded text and convert it to utf-8, -d is for decoding
+"base64_encoded_text" base64 -d
+
+# example
+echo "test" | base64 | base64 -d
+
 #############################################################
-############# END - ARCHIVING AND COMPRESSION ###############
+######## END - ARCHIVING, ENCODING AND COMPRESSION ##########
 #############################################################
 
 #############################################################
