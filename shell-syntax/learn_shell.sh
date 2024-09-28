@@ -517,6 +517,26 @@ set -x
 #############################################################
 
 
+#############################################################
+############### START - SOURCING A SHELL FILE ###############
+#############################################################
+
+# the notion of sourcing is to make all the variables, aliases,
+# and functions avaiable to the current shell process, meaning if
+# an alias is defined inside the file, sourcing will bring that
+# alias outside the file and into the current shell process
+
+# note: the shell process runs aliases first, then user defined 
+# functions, then built-in functions, and finally path executable files
+
+# syntax
+source ./<file_name.sh>
+
+#############################################################
+################ END - SOURCING A SHELL FILE ################
+#############################################################
+
+
 # create an alias in the .bashrc file
 vim ~/.bashrc
 # now set the alias in this file such as: 
