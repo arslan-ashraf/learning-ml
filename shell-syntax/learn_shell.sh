@@ -182,6 +182,13 @@ echo "example test" > example.txt
 echo nothing 2> error.txt
 cat error.txt # nothing: command not found
 
+# 1> writes standard output to std_output_file.txt, overwriting whatever was
+# there before
+echo "some text" 1> std_output_file.txt
+
+# another example, executes a shell script and sends output to std_output_file.txt
+./shell_script.sh 1> std_output_file.txt
+
 # >> appends to example.txt
 echo "text" >> example.txt
 # 2>> appends standard error to error.txt
