@@ -189,6 +189,8 @@ echo "some text" 1> std_output_file.txt
 # another example, executes a shell script and sends output to std_output_file.txt
 ./shell_script.sh 1> std_output_file.txt
 
+# note: 0 is for standard in, 1 is for standard out, 2 is for standard out
+
 # >> appends to example.txt
 echo "text" >> example.txt
 # 2>> appends standard error to error.txt
