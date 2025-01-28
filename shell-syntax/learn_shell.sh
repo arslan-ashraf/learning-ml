@@ -203,7 +203,12 @@ cat error.txt # nothing: command not found
 
 # 2>&1 redirects standard error to the same file file as standard output
 # the line below sends standard output and standard errors from script.sh
-# into logs.txt
+# into logs.txt, this duplicates file descriptor 1 and makes file descript 2
+# point to that duplicate, the open file description table (which holds
+# metadata about all open files such as byte offset, i-node pointer, which
+# process's which file descriptor is pointing to where, etc.) has one entry
+# to which both file descriptors point to, the dup() and dup2() system calls
+# do the same thing
 ./script.sh > logs.txt 2>&1
 
 #############################################################
