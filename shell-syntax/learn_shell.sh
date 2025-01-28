@@ -190,6 +190,7 @@ echo "some text" 1> std_output_file.txt
 ./shell_script.sh 1> std_output_file.txt
 
 # note: 0 is for standard in, 1 is for standard out, 2 is for standard out
+# and these are all streams
 
 # >> appends to example.txt
 echo "text" >> example.txt
@@ -199,6 +200,11 @@ cat error.txt # nothing: command not found
 
 # &> redirects standard out and standard error
 ./script.sh &> file.log
+
+# 2>&1 redirects standard error to the same file file as standard output
+# the line below sends standard output and standard errors from script.sh
+# into logs.txt
+./script.sh > logs.txt 2>&1
 
 #############################################################
 ########### END - WRITING & APPENDING INTO FILES ############
